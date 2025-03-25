@@ -1,5 +1,8 @@
 name: Cherrypick merged pull request
 on:
+  push:
+      branches:
+        - master
   pull_request_target:
     branches: [master]
     types: [closed]
