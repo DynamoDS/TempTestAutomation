@@ -30,6 +30,7 @@ jobs:
         id: check_constants
         run: |
           echo "${{github.event_name}}"
+          echo "${{ toJSON(github.event.pull_request) }}"
           echo "${{github.event.pull_request.merged}}"
           echo "${{github.event.pull_request.milestone}}"
           echo "${{github.event.issue.pull_request}}"
