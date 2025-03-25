@@ -45,6 +45,10 @@ jobs:
             echo "Milestone: $milestone"
             echo "milestone=$milestone" >> "$GITHUB_OUTPUT"
           fi
+          if [[ "${{ steps.check_constants.outputs.milestone }}" == "" ]]; then
+            echo "Milestone not set. Exiting..."
+            exit 1
+          fi
         shell: bash
       - name: Check if RC branch exists for the milestone
         id: check_branch
@@ -60,3 +64,8 @@ jobs:
             echo "Branch does not exist"
           fi
         shell: bash
+      - uses: actions/checkout@v4
+      - name: Start Cherrypick
+        uses: korthout/backport-action@v3
+          with:
+            
