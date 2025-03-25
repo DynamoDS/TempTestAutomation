@@ -29,6 +29,7 @@ jobs:
       - name: Setup constants
         id: check_constants
         run: |
+          milestone=""
           if [[ "${{ github.event_name }}" == "issue_comment" ]]; then
             pr_url="${{ github.event.issue.pull_request.url }}"
             pr_number=$(echo "$pr_url" | grep -oE '[0-9]+$')
@@ -45,7 +46,7 @@ jobs:
             echo "Milestone: $milestone"
             echo "milestone=$milestone" >> "$GITHUB_OUTPUT"
           fi
-          if [[ "${{ steps.check_constants.outputs.milestone }}" == "" ]]; then
+          if [[ $milestone -eq "" ]]; then
             echo "Milestone not set. Exiting..."
             exit 1
           fi
