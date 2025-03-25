@@ -29,9 +29,12 @@ jobs:
       - name: Check constants
         id: check_constants
         run: |
-          echo "${{fromJSON(github.event.issue.pull_request).url}}"
-          echo "${{github.event.pull_request.pull_request.merged}}"
-          echo "${{github.event.pull_request.pull_request.milestone}}"
+          echo "${{github.event.issue.pull_request.url}}"
+          pr_url="${{ github.event.issue.pull_request.url }}"
+          pr_number=$(echo "$pr_url" | grep -oE '[0-9]+$')
+          echo "PR Number: $pr_number"
+          echo "${{github.event.pull_request.merged}}"
+          echo "${{github.event.pull_request.milestone}}"
           echo "${{github.event.comment.user.id}}"
           echo "${{github.event.comment.body}}"
         shell: bash
