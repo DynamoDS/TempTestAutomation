@@ -29,7 +29,9 @@ jobs:
       - name: Check constants
         id: check_constants
         run: |
-          echo "${{toJSON(github.event.issue.pull_request)}}"
+          pr=${{toJSON(github.event.issue.pull_request)}}
+          echo $pr
+          echo "${{fromJSON(pr).url}}"
           echo "${{github.event.pull_request.pull_request.merged}}"
           echo "${{github.event.pull_request.pull_request.milestone}}"
           echo "${{github.event.comment.user.id}}"
