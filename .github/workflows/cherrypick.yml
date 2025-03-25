@@ -51,8 +51,8 @@ jobs:
         run: |
           BRANCH_NAME="RC${{ steps.check_constants.outputs.milestone }}.0_master"
           echo "Branch name: $BRANCH_NAME"
-          BRANCH_URL="https://api.github.com/repos/${{ github.repository }}/branches/$BRANCH_NAME"
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ${{BRANCH_URL}})
+          BRANCH_URL="https://api.github.com/repos/${{ github.repository }}/branches/RC${{ steps.check_constants.outputs.milestone }}.0_master"
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/branches/RC${{ steps.check_constants.outputs.milestone }}.0_master)
           if [ $RESPONSE -eq 200 ]; then
             echo "Branch exists"
           else
