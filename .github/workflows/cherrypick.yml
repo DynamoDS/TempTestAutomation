@@ -41,7 +41,7 @@ jobs:
             echo "milestone=$milestone" >> "$GITHUB_OUTPUT"
           fi
           if [[ "${{ github.event_name }}" == "pull_request_target" ]]; then
-            milestone=${{github.event.pull_request.milestone}}
+            milestone=${{github.event.pull_request.milestone.title}}
             echo "Milestone: $milestone"
             echo "milestone=$milestone" >> "$GITHUB_OUTPUT"
           fi
