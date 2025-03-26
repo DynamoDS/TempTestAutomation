@@ -72,7 +72,6 @@ jobs:
           branch_name: cherrypick-${pull_number}
           copy_milestone: true
           copy_requested_reviewers: true
-          cherry_picking: pull_request_head
           target_branches: ${{ steps.check_branch.outputs.BRANCH_NAME }}
           pull_title: "[Cherry-pick] ${pull_title}"
           pull_description: "Cherry-pick of #${pull_number} to `${target_branch}` \n ${pull_description}"
